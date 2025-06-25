@@ -1,5 +1,6 @@
 package com.fn.studentmanagement.service.impl;
 
+import com.fn.studentmanagement.dto.common.PageResponse;
 import com.fn.studentmanagement.dto.student_section_class.StudentSectionClassRequest;
 import com.fn.studentmanagement.dto.student_section_class.StudentSectionClassResponse;
 import com.fn.studentmanagement.entity.StudentSectionClass;
@@ -9,6 +10,8 @@ import com.fn.studentmanagement.repository.StudentSectionClassRepository;
 import com.fn.studentmanagement.service.StudentSectionClassService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -48,6 +51,13 @@ public class StudentSectionClassServiceImpl implements StudentSectionClassServic
         repository.deleteByStudentIdAndSectionClassId(studentId, id);
       }
     }
+  }
+
+  @Override
+  public List<Integer> findAll(Integer studentId) {
+    log.info("(findAll) of student id: {}", studentId);
+
+    return repository.findAllSectionClassIdByStudentId(studentId);
   }
 
   private StudentSectionClass toEntity(Integer studentId, Integer sectionClassId) {

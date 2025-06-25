@@ -65,10 +65,21 @@ public class SectionClassServiceImpl implements SectionClassService {
 
     for (Integer id : ids) {
       if (!repository.existsById(id)) {
-        return false;
+        return true;
       }
     }
-    return true;
+    return false;
+  }
+
+  @Override
+  public PageResponse<SectionClassResponse> findAll(List<Integer> ids, PageRequest pageRequest) {
+    log.info("(findAll) section class request: {}", ids);
+
+    List<SectionClassResponse> sectionClassResponses = repository.findAll(ids, pageRequest).getContent();
+    return PageResponse.of(
+            sectionClassResponses,
+            sectionClassResponses.size()
+    );
   }
 
   private SectionClass toEntity(SectionClassRequest request) {

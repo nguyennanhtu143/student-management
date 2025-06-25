@@ -1,6 +1,8 @@
 package com.fn.studentmanagement.controller;
 
+import com.fn.studentmanagement.dto.common.PageResponse;
 import com.fn.studentmanagement.dto.common.ResponseGeneral;
+import com.fn.studentmanagement.dto.section_class.SectionClassResponse;
 import com.fn.studentmanagement.dto.student_section_class.StudentSectionClassRequest;
 import com.fn.studentmanagement.dto.student_section_class.StudentSectionClassResponse;
 import com.fn.studentmanagement.dto.user.UpdateUserRequest;
@@ -99,6 +101,20 @@ public class UserController {
     return ResponseGeneral.ofSuccess(
           SUCCESS_MESSAGE,
           null
+    );
+  }
+
+  @GetMapping("/{id}/section-classes")
+  public ResponseGeneral<PageResponse<SectionClassResponse>> findAllSectionClassEnrolled(
+          @PathVariable Integer id,
+          @RequestParam(required = false, defaultValue = "0") int page,
+          @RequestParam(required = false, defaultValue = "5") int size
+  ) {
+    log.info("===start find all section classes");
+
+    return ResponseGeneral.ofSuccess(
+            SUCCESS_MESSAGE,
+            studentSectionClassFacadeService.findAllSectionClassEnrolled(id, page, size)
     );
   }
 }

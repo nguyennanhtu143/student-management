@@ -11,6 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface SectionClassRepository extends JpaRepository<SectionClass, Integer> {
 
@@ -27,4 +29,11 @@ public interface SectionClassRepository extends JpaRepository<SectionClass, Inte
         @Param("subjectId") Integer subjectId,
         Pageable pageable
   );
+
+  @Query("SELECT new com.fn.studentmanagement.dto.section_class.SectionClassResponse(" +
+          "sc.id, sc.code, sc.subjectId, sc.teacherId, sc.semesterId, sc.room, " +
+          "sc.startDate, sc.endDate, sc.startTime, sc.endTime, sc.dayOfWeek) " +
+          "FROM SectionClass sc " +
+          "WHERE sc.id in :ids")
+  Page<SectionClassResponse> findAll(@Param("ids") List<Integer> ids, Pageable pageable);
 }
