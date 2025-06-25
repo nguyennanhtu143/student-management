@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <include file="db/changelog/20250624-0935-create-table-departments.xml"/>
+    <include file="db/changelog/20250624-0936-create-table-semesters.xml"/>
+    <include file="db/changelog/20250624-0940-create-table-users.xml"/>
+    <include file="db/changelog/20250624-0941-create-table-subjects.xml"/>
+    <include file="db/changelog/20250624-0942-create-table-section-classes.xml"/>
+    <include file="db/changelog/20250624-0943-create-table-student-section-class.xml"/>
+</databaseChangeLog>

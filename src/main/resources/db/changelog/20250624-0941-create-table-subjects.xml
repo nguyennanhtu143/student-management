@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="20250624-0941-create-table-subjects" author="tuna">
+        <createTable tableName="subjects">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="credits" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="department_id" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_subjects_department" referencedTableName="departments" referencedColumnNames="id"/>
+            </column>
+            <column name="grade1_percent" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="grade2_percent" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="grade3_percent" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="exam_grade_percent" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

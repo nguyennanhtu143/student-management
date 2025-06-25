@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: student-management
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/student_management?useSSL=false&serverTimezone=UTC&utf8=true&allowPublicKeyRetrieval=true
+  profiles:
+    active: ${PROFILE_ACTIVE:dev-local}
+  liquibase:
+    change-log: classpath:db/master.xml
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+server:
+  port: ${PORT_INTERNAL:8888}
+
+logging:
+  level:
+    sql: debug
+
+jwt:
+  secret-key: b3NpbnRfYXBpX2F1dGhvcml6YXRpb25AMjAyM19hY2Nlc3NfdG9rZW4=
+  access-token:
+    ttl: 864000000
+  refresh-token:
+    ttl: 864000000
+
+
+

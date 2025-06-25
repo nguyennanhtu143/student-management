@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="20250624-0942-create-table-section_classes" author="tuna">
+        <createTable tableName="section_classes">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="code" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="subject_id" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_section_classes_subject" referencedTableName="subjects" referencedColumnNames="id"/>
+            </column>
+            <column name="teacher_id" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_section_classes_teacher" referencedTableName="users" referencedColumnNames="id"/>
+            </column>
+            <column name="semester_id" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_section_classes_semester" referencedTableName="semesters" referencedColumnNames="id"/>
+            </column>
+            <column name="room" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="schedule" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="start_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20250624-1511-update-section_classes" author="tuna">
+        <dropColumn tableName="section_classes" columnName="schedule"/>
+        <addColumn tableName="section_classes">
+            <column name="start_time" type="TIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="TIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="day_of_week" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
